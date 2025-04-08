@@ -1,32 +1,29 @@
-
 <script setup>
 import { ref } from 'vue'
 
-const name = "nehal";
-const status= 'active';
-const colors = ref(['Red', 'Green', 'Blue']);
-const link = 'https://www.google.com/';
+const tasks = ref([]); 
+const newTask = ref(''); 
 
-const count = ref(0)
-
-function increment() {
-  count.value++
+const addTask = () => {
+  if (newTask.value.trim() !== '') {
+    tasks.value.push(newTask.value);
+  //  console.log('New Task:', newTask.value);
+    newTask.value = ''; // Clear input
+  } else {
+    console.log('Please enter a valid task.');
+  }
 }
 </script>
 
 <template>
-   
-   <h1>Hello {{ name }}</h1>
-   <p v-if="status === 'active'">user is active</p>
-   <p v-else-if="status === 'pending'">user is pending</p>
-   <p v-else>user is inactive</p>
+  <form @submit.prevent="addTask">
+    <label for="newTask">Add a new task:</label>
+    <input type="text" id="newTask" name="newTask" v-model="newTask" required />
+    <button type="submit">Submit</button>
 
-   <ul>
-      <li v-for="color in colors">{{ color }}</li>
-   </ul>
-   <a v-bind:href="link">click for google</a>
-   
-   <h1>Count: {{ count }}</h1>
-   <button @click="increment">Increment</button>
-
+  </form>
+  <h1>Tasks</h1>
+  <ul>
+   <li v-for="task in tasks" >{{ task }}</li>
+  </ul>
 </template>
