@@ -1,29 +1,19 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 
-const tasks = ref([]); 
-const newTask = ref(''); 
+const name = ref('')
+const message = ref('')
 
-const addTask = () => {
-  if (newTask.value.trim() !== '') {
-    tasks.value.push(newTask.value);
-  //  console.log('New Task:', newTask.value);
-    newTask.value = ''; // Clear input
+watch(name, (newVal, oldVal) => {
+  if (newVal.length > 0) {
+    message.value = `Hello, ${newVal}!`
   } else {
-    console.log('Please enter a valid task.');
+    message.value = ''
   }
-}
+})
 </script>
 
 <template>
-  <form @submit.prevent="addTask">
-    <label for="newTask">Add a new task:</label>
-    <input type="text" id="newTask" name="newTask" v-model="newTask" required />
-    <button type="submit">Submit</button>
-
-  </form>
-  <h1>Tasks</h1>
-  <ul>
-   <li v-for="task in tasks" >{{ task }}</li>
-  </ul>
+  <input v-model="name" placeholder="Enter your name" />
+  <p>{{ message }}</p>
 </template>
