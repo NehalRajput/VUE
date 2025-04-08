@@ -1,14 +1,44 @@
-<script setup>
-import { ref, computed } from 'vue'
+<!-----<script setup>
+import { ref, onMounted } from 'vue'
 
-const num1 = ref(10)
-const num2 = ref(20)
+const isLoading = ref(true)
+const data = ref([])
 
-const sum = computed(() => num1.value + num2.value)
+onMounted(() => {
+  setTimeout(() => {
+    data.value = ['Item 1', 'Item 2']
+    isLoading.value = false
+  }, 2000) 
+})
 </script>
 
 <template>
-  <p>Number 1: {{ num1 }}</p>
-  <p>Number 2: {{ num2 }}</p>
-  <p>Sum: {{ sum }}</p>
+  <div v-if="isLoading">
+    <p>Loading...</p> 
+  </div>
+  <ul v-else>
+    <li v-for="item in data" :key="item">{{ item }}</li>
+  </ul>
+</template>
+-->
+
+
+<script setup>
+import { ref, onMounted } from 'vue'
+
+const users = ref([])
+const isLoading = ref(true)
+
+onMounted(async () => {
+  const res = await fetch('https://jsonplaceholder.typicode.com/users')
+  users.value = await res.json()
+  isLoading.value = false
+})
+</script>
+
+<template>
+  <div v-if="isLoading">Loading users...</div>
+  <ul v-else>
+    <li v-for="user in users" :key="user.id">{{ user.name }}</li>
+  </ul>
 </template>
