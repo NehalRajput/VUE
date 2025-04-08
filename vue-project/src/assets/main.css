@@ -1,4 +1,11 @@
-@import './base.css';
+@import './base.css'; /* Import base styles from Vite */
+
+body {
+  background-color: #f2f2f2;
+  margin: 0px;
+  font-family: Tahoma, sans-serif;
+  color: #282828;
+}
 
 #app {
   max-width: 1280px;
@@ -21,15 +28,128 @@ a,
   }
 }
 
-@media (min-width: 1024px) {
-  body {
-    display: flex;
-    place-items: center;
+.nav-bar {
+  background: linear-gradient(-90deg, #84cf6a, #16c0b0);
+  height: 60px;
+  margin-bottom: 25px;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.57);
+}
+
+/* Updated Layout for Product Section */
+.product-display {
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.container {
+  display: flex;
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 2px 15px -12px rgba(0, 0, 0, 0.2);
+  max-width: 900px;
+  width: 100%;
+  gap: 40px;
+}
+
+/* Image Styling */
+.product-image img {
+  width: 280px;
+  height: auto;
+  border: 2px solid #d8d8d8;
+  border-radius: 5px;
+  padding: 10px;
+  box-shadow: 2px 15px -12px rgba(0, 0, 0, 0.3);
+}
+
+/* Product Info */
+.product-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+h1 {
+  font-size: 42px;
+  margin-bottom: 10px;
+}
+
+p {
+  font-size: 20px;
+  margin: 10px 0;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0;
+}
+
+li {
+  font-size: 18px;
+  margin: 5px 0;
+}
+
+/* Variant Colors */
+.color-circle {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 10px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+
+/* Button */
+.button {
+  margin-top: 20px;
+  background-color: #39495c;
+  border-radius: 5px;
+  font-size: 16px;
+  width: 160px;
+  height: 45px;
+  color: white;
+  padding: 12px;
+  text-align: center;
+  box-shadow: inset 0 -0.6em 1em -0.35em rgba(0, 0, 0, 0.17),
+              inset 0 0.6em 2em -0.3em rgba(255, 255, 255, 0.15),
+              inset 0 0 0em 0.05em rgba(255, 255, 255, 0.12);
+  cursor: pointer;
+}
+
+/* Cart Box */
+.cart {
+  background-color: white;
+  border: 1px solid #d8d8d8;
+  padding: 10px 20px;
+  box-shadow: 2px 15px -12px rgba(0, 0, 0, 0.3);
+  margin-bottom: 20px;
+  align-self: flex-end; /* aligns it to the right inside the flex container */
+}
+
+
+/* Responsive */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    align-items: center;
   }
 
-  #app {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 0 2rem;
+  .product-image img {
+    width: 70%;
+  }
+
+  .product-info {
+    width: 100%;
+    align-items: center;
+    text-align: center;
+  }
+
+  .cart {
+    position: static;
+    margin: 20px auto;
   }
 }
