@@ -1,19 +1,14 @@
 <script setup>
-import { ref, watch } from 'vue'
+import { ref, computed } from 'vue'
 
-const name = ref('')
-const message = ref('')
+const num1 = ref(10)
+const num2 = ref(20)
 
-watch(name, (newVal, oldVal) => {
-  if (newVal.length > 0) {
-    message.value = `Hello, ${newVal}!`
-  } else {
-    message.value = ''
-  }
-})
+const sum = computed(() => num1.value + num2.value)
 </script>
 
 <template>
-  <input v-model="name" placeholder="Enter your name" />
-  <p>{{ message }}</p>
+  <p>Number 1: {{ num1 }}</p>
+  <p>Number 2: {{ num2 }}</p>
+  <p>Sum: {{ sum }}</p>
 </template>
